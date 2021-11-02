@@ -9,6 +9,10 @@ const (
 	defaultCount       float64 = 32
 )
 
+func NewCircle() CircleToPolygon {
+	return &circleToPolygon{}
+}
+
 type CircleToPolygon interface {
 	SetEarthRadius(float64) CircleToPolygon
 	SetRadius(float64) CircleToPolygon
