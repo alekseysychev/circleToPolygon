@@ -1,4 +1,6 @@
-package circletopolygon
+package circleToPolygon
+
+// version 1.0.2
 
 import (
 	"math"
@@ -9,17 +11,19 @@ const (
 	defaultCount       float64 = 32
 )
 
-func NewCircle() CircleToPolygon {
-	return &circleToPolygon{}
+// create new circle
+func NewCircle(latitude float64, longtitude float64, radius float64) CircleToPolygon {
+	return &circleToPolygon{
+		center: [2]float64{latitude, longtitude},
+		radius: radius,
+	}
 }
 
 type CircleToPolygon interface {
-	SetEarthRadius(float64) CircleToPolygon
-	SetRadius(float64) CircleToPolygon
-	SetCenter([2]float64) CircleToPolygon
-	SetBearing(float64) CircleToPolygon
-	SetDirection(float64) CircleToPolygon
-	Draw() [][2]float64
+	SetEarthRadius(float64) CircleToPolygon // set earth radius
+	SetBearing(float64) CircleToPolygon     // set bearing
+	SetDirection(float64) CircleToPolygon   // set circle direction
+	Draw() [][2]float64                     // draw circle by options
 }
 
 type circleToPolygon struct {
@@ -43,18 +47,8 @@ func (ctp *circleToPolygon) getEarthRadius() float64 {
 	return ctp.earthRadius
 }
 
-func (ctp *circleToPolygon) SetRadius(radius float64) CircleToPolygon {
-	ctp.radius = radius
-	return ctp
-}
-
 func (ctp *circleToPolygon) getRadius() float64 {
 	return ctp.radius
-}
-
-func (ctp *circleToPolygon) SetCenter(center [2]float64) CircleToPolygon {
-	ctp.center = center
-	return ctp
 }
 
 func (ctp *circleToPolygon) getCenter() [2]float64 {
