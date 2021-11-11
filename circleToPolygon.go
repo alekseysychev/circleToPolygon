@@ -1,8 +1,9 @@
 package circleToPolygon
 
-// version 1.0.2
+// version 1.0.3
 
 import (
+	"encoding/json"
 	"math"
 )
 
@@ -24,6 +25,7 @@ type CircleToPolygon interface {
 	SetBearing(float64) CircleToPolygon     // set bearing
 	SetDirection(float64) CircleToPolygon   // set circle direction
 	Draw() [][2]float64                     // draw circle by options
+	DrawGeoJson() []byte                    // draw in geoJson
 }
 
 type circleToPolygon struct {
