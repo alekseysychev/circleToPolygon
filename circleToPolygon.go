@@ -103,6 +103,15 @@ func (ctp *circleToPolygon) Draw() [][2]float64 {
 	return coordinates
 }
 
+func (ctp *circleToPolygon) DrawGeoJson() []byte {
+	data, _ := json.Marshal(ctp.Draw()) // always correct
+	result := []byte{}
+	result = append(result, []byte(`{"coordinates":[`)...)
+	result = append(result, data...)
+	result = append(result, []byte(`],"type":"Polygon"}`)...)
+	return result
+}
+
 func toRadians(angleInDegrees float64) float64 {
 	return (angleInDegrees * math.Pi) / 180
 }
