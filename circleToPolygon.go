@@ -112,8 +112,8 @@ func toDegrees(angleInRadians float64) float64 {
 }
 
 func offset(c1 [2]float64, distance float64, earthRadius float64, bearing float64) [2]float64 {
-	lat1 := toRadians(c1[1])
-	lon1 := toRadians(c1[0])
+	lat1 := toRadians(c1[0])
+	lon1 := toRadians(c1[1])
 	dByR := distance / earthRadius
 	lat := math.Asin(math.Sin(lat1)*math.Cos(dByR) + math.Cos(lat1)*math.Sin(dByR)*math.Cos(bearing))
 	lon := lon1 + math.Atan2(
