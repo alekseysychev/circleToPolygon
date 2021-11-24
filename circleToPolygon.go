@@ -106,7 +106,9 @@ func (ctp *circleToPolygon) Draw() [][2]float64 {
 }
 
 func (ctp *circleToPolygon) DrawGeoJson() []byte {
-	data, _ := json.Marshal(ctp.Draw()) // always correct
+	points := ctp.Draw()
+	points = append(points, points[0]) // close polygon
+	data, _ := json.Marshal(points)    // always correct
 	result := []byte{}
 	result = append(result, []byte(`{"coordinates":[`)...)
 	result = append(result, data...)
